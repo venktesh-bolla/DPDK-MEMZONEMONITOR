@@ -39,8 +39,8 @@
 static FILE *fptr = NULL;
 
 static uint8_t console = 1;
-uint8_t monitor = 1;
-uint8_t displaymenu = 0;
+static uint8_t monitor = 1;
+static uint8_t displaymenu = 0;
 
 static int8_t count = MAX_MONITOR;
 static uint32_t *crcvalues_ptr[MAX_MONITOR];
@@ -114,7 +114,7 @@ static void monitor_timer_cb(__attribute__((unused)) struct rte_timer *tim, void
                                 if (tempcrc != *(crcvalues_ptr[timerArgs->index] + i)) {
                                         if (console) {
                                                 if (displaymenu) {
-                                                        fprintf(stdout, "\033[%d;2H%d - (%s) of len (%zd) at offset (%u) with data (%"PRIx64",%"PRIx64",%"PRIx64",%"PRIx64",%"PRIx64",%"PRIx64",%"PRIx64",%"PRIx64")                                            ",
+                                                        fprintf(stdout, "\033[%d;2H%d - (%s) of len (%zd) at offset (%8u) with data (%16"PRIx64",%16"PRIx64",%16"PRIx64",%16"PRIx64",%16"PRIx64",%16"PRIx64",%16"PRIx64",%16"PRIx64")",
                                                         timerArgs->index + 11, timerArgs->index,
                                                         timerArgs->mzPtr->name, timerArgs->mzPtr->len,
                                                         i * RTE_CACHE_LINE_SIZE,
@@ -136,7 +136,7 @@ static void monitor_timer_cb(__attribute__((unused)) struct rte_timer *tim, void
                                 if (tempcrc != *(crcvalues_ptr[timerArgs->index] + i)) {
                                         if (console) {
                                                 if (displaymenu) {
-                                                        fprintf(stdout, "\033[%d;2H%d - (%s) of len (%zd) at offset (%u) with data (%"PRIx64",%"PRIx64",%"PRIx64",%"PRIx64",%"PRIx64",%"PRIx64",%"PRIx64",%"PRIx64")                                            ",
+                                                        fprintf(stdout, "\033[%d;2H%d - (%s) of len (%zd) at offset (%8u) with data (%16"PRIx64",%16"PRIx64",%16"PRIx64",%16"PRIx64",%16"PRIx64",%16"PRIx64",%16"PRIx64",%16"PRIx64")",
                                                         timerArgs->index + 11, timerArgs->index,
                                                         timerArgs->mzPtr->name, timerArgs->mzPtr->len,
                                                         i * RTE_CACHE_LINE_SIZE,
